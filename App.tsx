@@ -92,7 +92,6 @@ function App(): JSX.Element {
           <LearnMoreLinks />
         </View>
       </ScrollView>
-      
     </SafeAreaView>
   );
 }
