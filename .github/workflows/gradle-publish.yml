@@ -55,7 +55,7 @@ jobs:
       - name: Build Android App Bundle
         run: |
           cd android && ./gradlew bundleRelease --no-daemon
-          
+
       ## Distribute  App to google play alpha track
       - name: Upload App to Google Play
         uses: r0adkll/upload-google-play@v1
@@ -63,6 +63,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
           packageName:  com.domingo.testingnow
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
-          track: alpha
+          track: internal
           status: completed
           inAppUpdatePriority: 2
