@@ -51,9 +51,7 @@ jobs:
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
 
-      - name: Generate App APK
-        run: |
-          cd android && ./gradlew assembleRelease --no-daemon
+      
 
       
 
