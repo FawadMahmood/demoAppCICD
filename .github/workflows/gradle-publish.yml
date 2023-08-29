@@ -71,7 +71,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
-          packageName: com.test.test
+          packageName:  com.awesomeproject
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
           track: alpha
           status: completed
