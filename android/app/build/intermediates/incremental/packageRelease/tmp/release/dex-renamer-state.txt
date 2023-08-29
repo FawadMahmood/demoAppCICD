@@ -1,4 +1,0 @@
-#Tue Aug 29 05:17:26 PKT 2023
-base.0=/Users/areezmahmood/Documents/GitHub/demoAppCICD/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
