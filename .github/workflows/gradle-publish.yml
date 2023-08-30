@@ -93,4 +93,4 @@ jobs:
             -d '{
               "track": "internal"
             }' \
-            "https://www.googleapis.com/androidpublisher/v3/applications/com.circuitid.fax/tracks/internal/releases/${{ steps.read-release-id.outputs.release_id }}/promote"
+            "https://www.googleapis.com/androidpublisher/v3/applications/com.domingo.testingnow/tracks/internal/releases/${{ steps.read-release-id.outputs.release_id }}/promote"
