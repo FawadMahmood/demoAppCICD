@@ -65,5 +65,5 @@ jobs:
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
           track: internal
           status: inProgress
-          userFraction: 1.0
+          userFraction: 0.9
           inAppUpdatePriority: 2
