@@ -63,7 +63,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
           packageName: com.domingo.testingnow
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
-          track: internal
-          status: inProgress
-          userFraction: 0.9
+          track: alpha
+          status: completed
           inAppUpdatePriority: 2
