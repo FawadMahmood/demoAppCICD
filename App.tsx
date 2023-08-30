@@ -89,6 +89,7 @@ function App(): JSX.Element {
           <Section title="Learn More">
             UPDATED BUILD
           </Section>
+          
           <LearnMoreLinks />
         </View>
       </ScrollView>
