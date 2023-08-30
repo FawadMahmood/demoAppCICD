@@ -12,9 +12,7 @@ jobs:
 
     steps:
       - name: Check out Git repository # clone the repo to local ci workspace
-        uses: actions/checkout@v3
-        with: 
-          token: {{ secrets.TOKEN_GITHUB }}
+        uses: actions/checkout@v2
 
 
       - name: Update Version
@@ -42,7 +40,7 @@ jobs:
 
           # Push the changes to GitHub
           git push origin main
-        working-directory: .github/workflows
+        working-directory: version
 
       - name: Set up our JDK environment # setup JDK environment: mandatory as we need to build  android project
         uses: actions/setup-java@v1.4.3
