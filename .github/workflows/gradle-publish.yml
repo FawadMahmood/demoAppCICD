@@ -64,33 +64,4 @@ jobs:
           packageName: com.domingo.testingnow
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
           track: internal
-          status: draft
           inAppUpdatePriority: 2
-
-      - name: Get Release ID
-        id: get-release-id
-        run: |
-          echo "Fetching release ID..."
-          curl -X GET \
-            -H "Authorization: Bearer ${{ secrets.GOOGLE_PLAY_API_KEY }}" \
-            "https://www.googleapis.com/androidpublisher/v3/applications/com.domingo.testingnow/tracks/internal/releases" |
-          jq '.releases[] | select(.versionCodes[] == $VERSION_CODE) | .name' --arg VERSION_CODE ${{ steps.upload.outputs.versionCodes[0] }} > release_id.txt
-
-      - name: Read Release ID
-        id: read-release-id
-        run: |
-          echo "Reading release ID..."
-          RELEASE_ID=$(cat release_id.txt)
-          echo "Release ID: $RELEASE_ID"
-          echo "::set-output name=release_id::$RELEASE_ID"
-
-      - name: Publish Draft to Internal Testers
-        run: |
-          echo "Publishing draft to internal testers..."
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.GOOGLE_PLAY_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "track": "internal"
-            }' \
-            "https://www.googleapis.com/androidpublisher/v3/applications/com.domingo.testingnow/tracks/internal/releases/${{ steps.read-release-id.outputs.release_id }}/promote"
