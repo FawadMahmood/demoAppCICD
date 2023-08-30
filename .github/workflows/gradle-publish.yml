@@ -80,7 +80,7 @@ jobs:
 
           # Push the changes to GitHub
           git push origin main # Replace 'main' with your default branch
-        working-directory: .
+        working-directory: .github/workflows
 
 
       ## Distribute  App to google play alpha track
@@ -90,6 +90,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
           packageName: com.domingo.testingnow
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
-          track: beta
+          track: alpha
           status: completed
           inAppUpdatePriority: 2
