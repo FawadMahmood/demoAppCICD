@@ -14,6 +14,34 @@ jobs:
       - name: Check out Git repository # clone the repo to local ci workspace
         uses: actions/checkout@v2
 
+
+      - name: Update Version
+        run: |
+          # Get the current version from the version file
+          current_version=$(cat version.json | jq -r .version)
+
+          # Increment the build number (assuming your version follows x.y.z format)
+          # Split the version into an array
+          IFS='.' read -ra version_parts <<< "$current_version"
+
+          # Increment the last part (the build number)
+          version_parts[2]=$((version_parts[2]+1))
+
+          # Create the new version string
+          new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
+
+          # Update the version file
+          echo "{\"version\":\"$new_version\"}" > version.json
+
+          # Commit the changes
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git commit -am "Bump version to $new_version [skip ci]"
+
+          # Push the changes to GitHub
+          git push origin main
+        working-directory: .github/workflows
+
       - name: Set up our JDK environment # setup JDK environment: mandatory as we need to build  android project
         uses: actions/setup-java@v1.4.3
         with:
@@ -55,33 +83,6 @@ jobs:
       - name: Build Android App Bundle
         run: |
           cd android && ./gradlew bundleRelease --no-daemon
-      - name: Update Version
-        run: |
-          # Get the current version from the version file
-          current_version=$(cat version.json | jq -r .version)
-
-          # Increment the build number (assuming your version follows x.y.z format)
-          # Split the version into an array
-          IFS='.' read -ra version_parts <<< "$current_version"
-
-          # Increment the last part (the build number)
-          version_parts[2]=$((version_parts[2]+1))
-
-          # Create the new version string
-          new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
-
-          # Update the version file
-          echo "{\"version\":\"$new_version\"}" > version.json
-
-          # Commit the changes
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git commit -am "Bump version to $new_version [skip ci]"
-
-          # Push the changes to GitHub
-          git push origin main # Replace 'main' with your default branch
-        working-directory: .github/workflows
-
 
       ## Distribute  App to google play alpha track
       - name: Upload App to Google Play
