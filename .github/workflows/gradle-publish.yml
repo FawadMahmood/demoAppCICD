@@ -57,15 +57,15 @@ jobs:
           cd android && ./gradlew bundleRelease --no-daemon
 
 
-        - name: Uplaoding to IAS
-        id: ias
-        uses: sagar-viradiya/internal-app-sharing-action@v1.1.0
-        with:
-          # Your service account JSON GitHub secret
-          serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
-          # Your package name 
-          packageName: com.domingo.testingnow
-          aabFilePath: android/app/build/outputs/bundle/release/*.aab
+      - name: Uplaoding to IAS
+      id: ias
+      uses: sagar-viradiya/internal-app-sharing-action@v1.1.0
+      with:
+        # Your service account JSON GitHub secret
+        serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
+        # Your package name 
+        packageName: com.domingo.testingnow
+        aabFilePath: android/app/build/outputs/bundle/release/*.aab
 
       ## Distribute  App to google play alpha track
       # - name: Upload App to Google Play
