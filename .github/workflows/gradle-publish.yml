@@ -12,8 +12,9 @@ jobs:
 
     steps:
       - name: Check out Git repository # clone the repo to local ci workspace
-        with: {{ secrets.TOKEN_GITHUB }}
         uses: actions/checkout@v2
+        with: 
+          token: {{ secrets.TOKEN_GITHUB }}
 
 
       - name: Update Version
