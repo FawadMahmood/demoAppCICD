@@ -64,4 +64,5 @@ jobs:
           packageName: com.domingo.testingnow
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
           track: internal
+          status: draft
           inAppUpdatePriority: 2
